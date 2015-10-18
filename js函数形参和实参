@@ -1,0 +1,14 @@
+function check(args){
+	var actual=args.length;
+	var expected=args.callee.length;
+	if(actual!=expected){
+		console.log("wrong number of arguments:expected:"+expected+";actually passed:"+actual);
+	}
+}
+function f(x,y,z,c){
+	check(arguments);
+	return x+y+z;
+}
+f(1,2);
+//args.length表示实际传入函数的参数个数
+//args.callee.length表示定义函数时希望传入参数的个数
