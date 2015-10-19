@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+	<title>判断年龄是否大于18岁</title>
+</head>
+
+<body>
+<script>
+function parseDate(str){
+if(str.match(/^\d{4}[\-\/\s+]\d{1,2}[\-\/\s+]\d{1,2}$/)){
+return new Date(str.replace(/[\-\/\s+]/i,'/'))
+}else if(str.match(/^\d{8}$/)){
+return new Date(str.substring(0,4)+'/'+str.substring(4,6)+'/'+str.substring(6))
+}else{
+alert('date parse error')
+}
+}
+
+function getAge(){
+var age;
+var aDate=new Date();
+var thisYear=aDate.getFullYear();
+var thisMonth=aDate.getMonth()+1;
+var thisDay=aDate.getDate();
+var brith=parseDate(document.getElementById("date1").value);
+brithy=brith.getFullYear();
+brithm=brith.getMonth()+1;
+brithd=brith.getDate();
+if(thisYear-brithy<0)
+{
+       alert("输入错误!");
+       age="";
+}
+else
+{
+       if(thisMonth-brithm<0)
+       {
+              age = thisYear-brithy-1;
+       }
+       else
+       {
+              if(thisDay-brithd>=0)
+              {//alert(thisDay+'-'+brithd+"_ddd");
+                     age = thisYear-brithy;
+              }
+              else
+              {
+                     age = thisYear-brithy-1;
+              }
+       }
+}
+document.getElementById("date2").value=age;
+}
+</script>
+<from name="theform">
+生日:<input name="date1" id="date1" type="date">
+<button onclick="getAge()">计算</button>
+年龄:<input name="date2" id="date2">
+</form>
+</body>
+</html>
